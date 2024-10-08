@@ -29,7 +29,8 @@ export class InformationComponent implements OnInit {
     axios.get('/api/information').then(({ data }) => {
       this.informations = data;
       this._spinner.hide();
-    }).catch(() => this.toastr.error('Eroare la preluarea informațiilor!'));
+    }).catch(() => {
+      this.toastr.error('Eroare la preluarea informațiilor!')});
   }
 
   addEdit = (id_information?: number): void => {
