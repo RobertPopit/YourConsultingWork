@@ -12,7 +12,7 @@ module.exports = function initPg(config) {
         } : false
       },
       pool: {
-        max: config.poolMax ? config.poolMax: 5,
+        max: config.poolMax ? config.poolMax : 5,
         min: 0,
         acquire: 30000,
         idle: 10000
@@ -27,6 +27,18 @@ module.exports = function initPg(config) {
 
     sequelize.authenticate().then(() => {
       const db = require('../models')(sequelize, Sequelize);
+      db.models.Cars.belongsToMany(db.models.Persons, {
+        through: db.models.Junction,
+        foreignKey: 'carId',
+        otherKey: 'personId'
+
+      });
+      db.models.Persons.belongsToMany(db.models.Cars, {
+        through: db.models.Junction,
+        foreignKey: 'personId',
+        otherKey: 'carId'
+
+      });
       resolve(db);
       console.info('Database connection successfully.');
     }).catch(e => reject(e));

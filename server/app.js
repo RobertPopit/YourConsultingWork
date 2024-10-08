@@ -12,7 +12,7 @@ process.env.TZ = 'Europe/Bucharest';
 global.NODE_ENV = process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
 global.config = config;
 
-io.adapter(redis(process.env.REDIS_URL));
+//  io.adapter(redis(process.env.REDIS_URL));
 
 Promise.all([pg(config), phantomInit.createPhantomSession(app)]).then(values => {
   app.locals.config = config;

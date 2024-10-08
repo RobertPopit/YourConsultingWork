@@ -6,6 +6,7 @@ module.exports = function getModels(sequelize, Sequelize) {
   const path = require('path');
 
   const fileTree = [];
+  const models = {};
 
   function getFilesRecursive(folder) {
     const fileContents = fs.readdirSync(folder);
@@ -30,7 +31,12 @@ module.exports = function getModels(sequelize, Sequelize) {
 
   const arr = [
     /************************ Information *********************/
-    {path: __dirname + '/information.js', sync: true},
+    { path: __dirname + '/cars.js', sync: true },      
+    { path: __dirname + '/persons.js', sync: true },   
+    { path: __dirname + '/junction.js', sync: true },
+    { path: __dirname + '/information.js', sync: true },
+
+
   ];
 
   const syncTables = [];
